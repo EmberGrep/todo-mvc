@@ -36,19 +36,14 @@ export default Ember.Controller.extend({
         });
     },
 
-    toggleDone(todo) {
-      const updatedTodo = {
-        ...todo,
-        isComplete: !todo.isComplete
-      };
-
+    saveTodo(todo) {
       window.fetch(`http://todo-mvc-api.herokuapp.com/api/todos/${todo.id}`, {
         method: 'put',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({todo: updatedTodo})
+        body: JSON.stringify({todo: todo})
       })
         .then((response) => response.json())
         .then((data) => {
