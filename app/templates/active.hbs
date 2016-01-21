@@ -12,7 +12,7 @@
     <input class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      {{#each appController.model as |todo|}}
+      {{#each (active-only appController.model) as |todo|}}
         {{todo-item todo=todo onupdate=(action 'saveTodo') ondestroy=(action 'deleteTodo')}}
       {{/each}}
     </ul>
