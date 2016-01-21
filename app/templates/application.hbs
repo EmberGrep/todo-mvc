@@ -13,9 +13,9 @@
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
       {{#each model as |todo|}}
-        <li class="completed">
+        <li class="{{if todo.isComplete "completed"}}">
           <div class="view">
-            <input class="toggle" type="checkbox" checked onchange={{action "toggleDone" todo}}>
+            <input class="toggle" type="checkbox" checked={{todo.isComplete}} onchange={{action "toggleDone" todo}}>
             <label>{{todo.title}}</label>
             <button class="destroy" onclick={{action "deleteTodo" todo}}></button>
           </div>
