@@ -13,7 +13,7 @@
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
       {{#each model as |todo|}}
-        {{todo-item todo=todo onupdate=(action 'saveTodo')}}
+        {{todo-item todo=todo onupdate=(action 'saveTodo') ondestroy=(action 'deleteTodo')}}
       {{/each}}
     </ul>
   </section>
