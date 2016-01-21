@@ -1,6 +1,9 @@
 import Ember from 'ember';
+let {set} = Ember;
 
 export default Ember.Component.extend({
+  editing: false,
+
   actions: {
     deleteTodo(todo) {
       this.sendAction('ondestroy', todo);
@@ -13,6 +16,12 @@ export default Ember.Component.extend({
       };
 
       this.sendAction('onupdate', nextState);
+    },
+
+    startEdit() {
+      set(this, 'editing', true);
+
+      window.requestAnimationFrame(() => this.$('.edit').focus());
     }
   }
 });
