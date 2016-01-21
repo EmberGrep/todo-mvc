@@ -17,6 +17,9 @@ export default Ember.Controller.extend({
         .then((data) => {
           set(this, 'newTitle', '');
           console.log('request succeeded with JSON response', data);
+          const allTodos = [data.todo, ...this.model];
+
+          set(this, 'model', allTodos);
         });
     }
   }
