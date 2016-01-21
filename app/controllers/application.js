@@ -53,6 +53,8 @@ export default Ember.Controller.extend({
         .then((response) => response.json())
         .then((data) => {
           console.log('request succeeded with JSON response', data);
+          const allTodos = this.model.map((currentTodo) => currentTodo.id === data.todo.id ? data.todo : currentTodo);
+          set(this, 'model', allTodos);
         });
     },
   },
