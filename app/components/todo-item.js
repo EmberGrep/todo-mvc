@@ -18,6 +18,19 @@ export default Ember.Component.extend({
       this.sendAction('onupdate', nextState);
     },
 
+    updateTitle(todo) {
+      const title = this.$('.edit').val();
+
+      const nextState = {
+        ...todo,
+        title
+      };
+
+      this.sendAction('onupdate', nextState);
+
+      set(this, 'editing', false);
+    },
+
     startEdit() {
       set(this, 'editing', true);
 
