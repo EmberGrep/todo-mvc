@@ -8,10 +8,10 @@ export default Ember.Controller.extend({
       window.fetch('http://todo-mvc-api.herokuapp.com/api/todos', {
         method: 'post',
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({todo: {title}})
+        body: JSON.stringify({todo: {title}}),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -21,6 +21,14 @@ export default Ember.Controller.extend({
 
           set(this, 'model', allTodos);
         });
-    }
-  }
+    },
+
+    deleteTodo(todo) {
+      fetch(`http://todo-mvc-api.herokuapp.com/api/todos/${todo.id}`, { method: 'delete' })
+        .then((response) => response.ok ? window.Promise.resolve() : window.Promise.reject())
+        .then((data) => {
+          console.log('request succeeded with JSON response', data);
+        });
+    },
+  },
 });
