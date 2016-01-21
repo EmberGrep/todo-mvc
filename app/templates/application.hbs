@@ -15,9 +15,9 @@
       {{#each model as |todo|}}
         <li class="completed">
           <div class="view">
-            <input class="toggle" type="checkbox" checked>
+            <input class="toggle" type="checkbox" checked onchange={{action "toggleDone" todo}}>
             <label>{{todo.title}}</label>
-            <button class="destroy"></button>
+            <button class="destroy" onclick={{action "deleteTodo" todo}}></button>
           </div>
           <input class="edit" value="{{todo.title}}">
         </li>

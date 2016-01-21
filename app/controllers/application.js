@@ -26,8 +26,13 @@ export default Ember.Controller.extend({
     deleteTodo(todo) {
       fetch(`http://todo-mvc-api.herokuapp.com/api/todos/${todo.id}`, { method: 'delete' })
         .then((response) => response.ok ? window.Promise.resolve() : window.Promise.reject())
-        .then((data) => {
-          console.log('request succeeded with JSON response', data);
+        .then(() => {
+          console.log('request succeeded to delete');
+          const allTodos = this.model.filter((currentTodo) => {
+            return todo.id !== currentTodo.id;
+          });
+
+          set(this, 'model', allTodos);
         });
     },
   },
