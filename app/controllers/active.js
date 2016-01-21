@@ -1,19 +1,5 @@
 import Ember from 'ember';
+import TodoControllerActions from '../mixins/todo-controller-actions';
 
-export default Ember.Controller.extend({
-  appController: Ember.inject.controller('application'),
-
-  actions: {
-    createTodo() {
-      this.get('appController').send('createTodo', ...arguments);
-    },
-
-    deleteTodo() {
-      this.get('appController').send('deleteTodo', ...arguments);
-    },
-
-    saveTodo() {
-      this.get('appController').send('saveTodo', ...arguments);
-    },
-  },
+export default Ember.Controller.extend(TodoControllerActions, {
 });
