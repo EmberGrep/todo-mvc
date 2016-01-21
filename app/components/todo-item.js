@@ -20,6 +20,11 @@ export default Ember.Component.extend({
 
     updateTitle(todo) {
       const title = this.$('.edit').val();
+      set(this, 'editing', false);
+
+      if (title === todo.title) {
+        return;
+      }
 
       const nextState = {
         ...todo,
@@ -27,8 +32,6 @@ export default Ember.Component.extend({
       };
 
       this.sendAction('onupdate', nextState);
-
-      set(this, 'editing', false);
     },
 
     startEdit() {
