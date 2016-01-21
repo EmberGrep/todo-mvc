@@ -35,6 +35,18 @@ export default Ember.Component.extend({
       set(this, 'editing', true);
 
       window.requestAnimationFrame(() => this.$('.edit').focus());
+    },
+
+    acceptKeyInput(todo, ev) {
+      if (ev.keyCode === 27) {
+        this.$('.edit').val(todo.title);
+
+        set(this, 'editing', false);
+      }
+
+      if (ev.keyCode === 13) {
+        this.send('updateTitle', todo);
+      }
     }
   }
 });
