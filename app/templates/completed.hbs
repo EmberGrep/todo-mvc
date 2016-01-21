@@ -1,1 +1,5 @@
-{{outlet}}
+<ul class="todo-list">
+  {{#each (complete-only appController.model) as |todo|}}
+    {{todo-item todo=todo onupdate=(action 'saveTodo') ondestroy=(action 'deleteTodo')}}
+  {{/each}}
+</ul>
