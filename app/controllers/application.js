@@ -1,4 +1,5 @@
 import Ember from 'ember';
+const {set} = Ember;
 
 export default Ember.Controller.extend({
   actions: {
@@ -13,7 +14,10 @@ export default Ember.Controller.extend({
         body: JSON.stringify({todo: {title}})
       })
         .then((response) => response.json())
-        .then((data) => console.log('request succeeded with JSON response', data));
+        .then((data) => {
+          set(this, 'newTitle', '');
+          console.log('request succeeded with JSON response', data);
+        });
     }
   }
 });
