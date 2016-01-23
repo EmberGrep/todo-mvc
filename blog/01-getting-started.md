@@ -6,13 +6,13 @@ Right now Ember-CLI is in a bit of a teenage stage.
 While the 1.13.x branch of Ember CLI is crazy stable, I would rather get the benefits of building apps using hot style reloading and alot of the performance upgrades available in the 2.x beta versions.
 This means, we'll need to install the beta version of CLI:
 
-```
+```bash
 npm install -g ember-cli@2.3.0-beta.1
 ```
 
 Now once we have this, we can create a new Ember project:
 
-```
+```bash
 ember new todo-mvc
 ```
 
@@ -32,7 +32,7 @@ We'll have to get that into our build steps.
 To pull in third-party JS or CSS, we can go to `ember-cli-build.js` in our project and import the CSS into our build pipeline.
 After the creation of `app`, let's import our the `base.css` file we found earlier:
 
-```
+```js
 var app = new EmberApp(defaults, {
   // Add options here
 });
@@ -61,7 +61,7 @@ This template will wrap and be shown for everything within our app.
 If we open this file, we'll see the "Welcome to Ember" heading we saw in the browser.
 Let's paste the HTML we got from TodoMVC template so that our application template looks like this:
 
-```
+```htmlbars
 <section class="todoapp">
   <header class="header">
     <h1>todos</h1>
@@ -132,7 +132,7 @@ Let's start fixing that.
 To get started we need to modify our markup a bit.
 For accessibility and submit capturing, let's wrap the `new-todo` input in a `form` tag:
 
-```
+```htmlbars
 <form>
   <input class="new-todo" placeholder="What needs to be done?" autofocus>
 </form>
@@ -143,7 +143,7 @@ We can add an `onsubmit` handler to the `form` HTML, but we need a way to let Em
 To do this, we will use the `action` helper which allows us to capture user interaction and send it into Javascript where we can manipulate it.
 We'll call this new action `createTodo`:
 
-```
+```htmlbars
 <form onsubmit={{action "createTodo"}}>
   <input class="new-todo" placeholder="What needs to be done?" autofocus>
 </form>
@@ -158,7 +158,7 @@ So, let's first create a controller which will allow us to handle this user inte
 To go along with our `application` template, we'll need an `application` controller.
 Similar to Rails, we can generate this from the command line:
 
-```
+```htmlbars
 ember g controller application
 ```
 
@@ -214,7 +214,7 @@ Components in Ember are similar to standard HTML elements in that they have a na
 For instance the `input` component in Ember will allow us to listen for changes and update a property on our `application` controller.
 To use the `input` component, let's just replace the angle brackets with `{{` and `}}`:
 
-```hbs
+```htmlbars
 {{input class="new-todo" placeholder="What needs to be done?" autofocus=true}}
 ```
 
@@ -222,7 +222,7 @@ To use the `input` component, let's just replace the angle brackets with `{{` an
 
 Now we can make our input live update a property on our controller named `newTitle` by setting a `value` attribute to `newTitle`:
 
-```hbs
+```htmlbars
 {{input value=newTitle class="new-todo" placeholder="What needs to be done?" autofocus=true}}
 ```
 
@@ -234,7 +234,7 @@ How do we grab that?
 
 To the `action` helper after the action name, we can pass in a second parameter for data that we want to send along with the DOM event, in this case, our `newTitle` value:
 
-```hbs
+```htmlbars
 <form onsubmit={{action "createTodo" newTitle}}>
   {{input value=newTitle class="new-todo" placeholder="What needs to be done?" autofocus=true}}
 </form>
