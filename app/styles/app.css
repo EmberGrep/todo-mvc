@@ -1,3 +1,24 @@
 .destroy {
   cursor: pointer;
 }
+
+.alert {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  padding: 1rem;
+
+  background: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.alert h2 {
+  margin: 0;
+}
+
+.alert a {
+  font-weight: normal;
+  text-decoration: none;
+  color: inherit;
+}
