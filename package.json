@@ -10,7 +10,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "deploy": "ember build -e production && cp dist/index.html dist/200.html && surge dist todomvc-example.embergrep.com"
   },
   "repository": "",
   "engines": {
