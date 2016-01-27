@@ -31,7 +31,7 @@
     </ul>
     <!-- Hidden if no completed items are left ↓ -->
     {{#if (arr-length (complete-only model))}}
-      <button class="clear-completed">Clear completed</button>
+      <button class="clear-completed" onclick={{action "deleteTodos" (complete-only model)}}>Clear completed</button>
     {{/if}}
   </footer>
 </section>

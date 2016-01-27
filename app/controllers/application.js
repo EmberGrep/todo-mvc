@@ -52,5 +52,11 @@ export default Ember.Controller.extend({
           set(this, 'model', allTodos);
         });
     },
+
+    deleteTodos(todos) {
+      todos.forEach(todo => {
+        this.send('deleteTodo', todo);
+      });
+    },
   },
 });
