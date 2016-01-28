@@ -1,13 +1,6 @@
 import Ember from 'ember';
+import arrFilter from '../utils/arr-filter';
 
-export function activeOnly([todos]/*, hash*/) {
-  if (typeof todos !== 'object' || typeof todos.filter !== 'function') {
-    return [];
-  }
-
-  return todos.filter((todo) => {
-    return !todo.isComplete;
-  });
-}
+export let activeOnly = arrFilter();
 
 export default Ember.Helper.helper(activeOnly);
