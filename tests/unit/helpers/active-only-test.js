@@ -1,41 +1,18 @@
-import { activeOnly } from '../../../helpers/active-only';
+import { filter } from '../../../helpers/active-only';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | active only');
 
-test('it returns an array of active todos', function(assert) {
-  let todos = [
-    {title: 'Cereal', isComplete: false},
-    {title: 'Milk', isComplete: false},
-  ];
+test('it returns true for incomplete todos', function(assert) {
+  let todo = { title: 'Cereal', isComplete: false };
 
-  let resultObj = activeOnly([todos]);
-  assert.deepEqual(resultObj, todos);
+  let result = filter(todo);
+  assert.ok(result);
 });
 
-test('it returns no tasks if all are done', function(assert) {
-  let todos = [
-    {title: 'Cereal', isComplete: true},
-    {title: 'Milk', isComplete: true},
-  ];
+test('it returns false for complete todos', function(assert) {
+  let todo = { title: 'Cereal', isComplete: true };
 
-  let resultObj = activeOnly([todos]);
-  assert.deepEqual(resultObj, []);
-});
-
-test('it returns only incomplete tasks from a mixed set', function(assert) {
-  let todos = [
-    {title: 'Cereal', isComplete: true},
-    {title: 'Milk', isComplete: false},
-  ];
-
-  let resultObj = activeOnly([todos]);
-  assert.deepEqual(resultObj, [{title: 'Milk', isComplete: false}]);
-});
-
-test('it returns empty when there are no todos', function(assert) {
-  let todos = [];
-
-  let resultObj = activeOnly([todos]);
-  assert.deepEqual(resultObj, []);
+  let result = filter(todo);
+  assert.notOk(result);
 });

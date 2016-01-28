@@ -1,41 +1,18 @@
-import { completeOnly } from '../../../helpers/complete-only';
+import { filter } from '../../../helpers/complete-only';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | complete only');
 
-test('it returns an array of complete todos', function(assert) {
-  let todos = [
-    {title: 'Cereal', isComplete: true},
-    {title: 'Milk', isComplete: true},
-  ];
+test('it returns true for complete todos', function(assert) {
+  let todo = { title: 'Cereal', isComplete: true };
 
-  let resultObj = completeOnly([todos]);
-  assert.deepEqual(resultObj, todos);
+  let result = filter(todo);
+  assert.ok(result);
 });
 
-test('it returns no tasks if no are done', function(assert) {
-  let todos = [
-    {title: 'Cereal', isComplete: false},
-    {title: 'Milk', isComplete: false},
-  ];
+test('it returns false for incomplete todos', function(assert) {
+  let todo = { title: 'Cereal', isComplete: false };
 
-  let resultObj = completeOnly([todos]);
-  assert.deepEqual(resultObj, []);
-});
-
-test('it returns only incompletee tasks from a mixed set', function(assert) {
-  let todos = [
-    {title: 'Cereal', isComplete: true},
-    {title: 'Milk', isComplete: false},
-  ];
-
-  let resultObj = completeOnly([todos]);
-  assert.deepEqual(resultObj, [{title: 'Cereal', isComplete: true}]);
-});
-
-test('it returns empty when there are no todos', function(assert) {
-  let todos = [];
-
-  let resultObj = completeOnly([todos]);
-  assert.deepEqual(resultObj, []);
+  let result = filter(todo);
+  assert.notOk(result);
 });
