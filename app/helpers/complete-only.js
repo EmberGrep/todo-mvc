@@ -1,13 +1,6 @@
 import Ember from 'ember';
+import arrFilter from '../utils/arr-filter';
 
-export function completeOnly([todos]/*, hash*/) {
-  if (typeof todos !== 'object' || typeof todos.filter !== 'function') {
-    return [];
-  }
-
-  return todos.filter((todo) => {
-    return !!todo.isComplete;
-  });
-}
+export let completeOnly = arrFilter((todo) => todo.isComplete);
 
 export default Ember.Helper.helper(completeOnly);

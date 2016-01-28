@@ -4,8 +4,6 @@ export default function arrFilter(filter) {
       return [];
     }
 
-    return todos.filter((todo) => {
-      return !todo.isComplete;
-    });
+    return todos.filter(filter);
   };
 }
